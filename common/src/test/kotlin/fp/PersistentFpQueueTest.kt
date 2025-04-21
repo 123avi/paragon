@@ -1,8 +1,7 @@
-package fp
+package org.paragontech.common.fp
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import org.paragontech.fp.fpQueueOf
 
 class PersistentFpQueueTest {
 

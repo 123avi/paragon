@@ -7,6 +7,7 @@ interface FpQueue<T>  {
     fun enqueue(item: T): FpQueue<T>
     fun dequeue(): FpQueue<T>
     fun peek(): T?
+    fun prepend(item: T): FpQueue<T>
     fun isEmpty(): Boolean
     fun toList(): List<T>
 
@@ -26,6 +27,9 @@ class PersistentFpQueue<T> (
 
 
     override fun peek(): T? = queue.firstOrNull()
+
+    override fun prepend(item: T): FpQueue<T> =
+        PersistentFpQueue(queue.add(0, item))
 
     override fun isEmpty(): Boolean = queue.isEmpty()
 
