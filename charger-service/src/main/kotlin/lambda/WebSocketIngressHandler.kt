@@ -1,12 +1,15 @@
-package org.paragontech.event.handler
+package org.paragontech.lambda
 
 import com.amazonaws.services.lambda.runtime.events.APIGatewayV2WebSocketEvent
-import org.springframework.stereotype.Component
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import org.paragontech.gw.APIGatewayResponse
 
-@Component
+//import org.springframework.boot.availability.AvailabilityChangeEvent.publish
+
+
+//@Component
 class WebSocketIngressHandler(
-    private val eventPublisher: EventPublisher
+    private val publish: (topic: String, payload: String) -> Unit
 ) {
     private val objectMapper = jacksonObjectMapper()
 
@@ -14,23 +17,25 @@ class WebSocketIngressHandler(
         val routeKey = event.requestContext.routeKey
         val connectionId = event.requestContext.connectionId
 
+
         return try {
             when (routeKey) {
                 "\$connect" -> {
-                    val chargerId = extractChargerId(event)
-                    val payload = mapOf("chargerId" to chargerId, "connectionId" to connectionId)
-                    eventPublisher.publish("charger.connected", objectMapper.writeValueAsString(payload))
+                    val chargerId = event.queryStringParameters?.get("chargerId")
+                        ?: return APIGatewayResponse.error("Missing chargerId")
+                    val payload = """{"chargerId":"$chargerId","connectionId":"$connectionId"}"""
+                    publish("charger.connected", payload)
                 }
 
                 "\$disconnect" -> {
-                    val payload = mapOf("connectionId" to connectionId)
-                    eventPublisher.publish("charger.disconnected", objectMapper.writeValueAsString(payload))
+                    val payload = """{"connectionId":"$connectionId"}"""
+                    publish("charger.disconnected", payload)
                 }
 
                 else -> {
                     // e.g., telemetry or status update
-                    val payload = event.body ?: "{}"
-                    eventPublisher.publish("charger.telemetry", payload)
+                    val body = event.body ?: return APIGatewayResponse.error("Missing body")
+                    publish("charger.telemetry", body)
                 }
             }
 

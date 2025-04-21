@@ -28,9 +28,11 @@ dependencies {
     // === AWS Lambda Events for WebSocket Support ===
     implementation("com.amazonaws:aws-lambda-java-events:3.15.0")
     implementation("com.amazonaws:aws-lambda-java-core:1.2.3")
+    implementation("software.amazon.awssdk:sqs:2.25.23")
+
 
     // === Kafka (optional, only if you're producing events) ===
-    implementation("org.springframework.kafka:spring-kafka")
+//    implementation("org.springframework.kafka:spring-kafka")
 
     // === Test: JUnit 5 + MockK ===
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
@@ -38,6 +40,9 @@ dependencies {
     }
     testImplementation("io.mockk:mockk:1.13.10")
     testImplementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
+
 }
 
 

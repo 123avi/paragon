@@ -27,3 +27,4 @@ include(":common",
     ":charger-service",
     ":transaction-manager",
     ":billing-service")
+include("infra")

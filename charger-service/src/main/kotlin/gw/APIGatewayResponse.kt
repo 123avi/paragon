@@ -1,4 +1,4 @@
-package org.paragontech.event.handler
+package org.paragontech.gw
 
 data class APIGatewayResponse(
     val statusCode: Int,

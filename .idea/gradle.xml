@@ -25,6 +25,7 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/charger-service" />
             <option value="$PROJECT_DIR$/common" />
+            <option value="$PROJECT_DIR$/infra" />
             <option value="$PROJECT_DIR$/transaction-manager" />
             <option value="$PROJECT_DIR$/utils" />
           </set>

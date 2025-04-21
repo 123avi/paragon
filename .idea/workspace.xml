@@ -4,16 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dab0ba2e-2e59-4058-ae68-31360874c326" name="Changes" comment="add tests to queue - all green">
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/ChargerConnection.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/event/handler/APIGatewayResponse.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/event/handler/EventPublisher.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/event/handler/WebSocketIngressHandler.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/event/handler/WebSocketIngressHandlerTest.kt" afterDir="false" />
+    <list default="true" id="dab0ba2e-2e59-4058-ae68-31360874c326" name="Changes" comment="add event handler - all tests pass">
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/SQSEventPublisher.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/WebSocketRouterHandler.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/lambda/WebSocketIngressHandlerTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/fp/EventPublisherFn.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/main.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/outputs.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/variables.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/charger-service/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charger-service/src/test/kotlin/CommandQueueManagerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/charger/CommandQueueManagerTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/event/handler/APIGatewayResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/gw/APIGatewayResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/event/handler/EventPublisher.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/EventPublisher.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/event/handler/WebSocketIngressHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/WebSocketIngressHandler.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/test/kotlin/event/handler/WebSocketIngressHandlerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/gw/WebSocketIngressHandlerTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -71,6 +76,9 @@
     &quot;accountId&quot;: &quot;737b0899-7c48-4e02-8e75-d2e3330d6bec&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -86,7 +94,13 @@
     "Gradle.CommandQueueManagerTest.enqueue should add multiple commands to the same queue.executor": "Run",
     "Gradle.CommandQueueManagerTest.executor": "Run",
     "Gradle.PersistentFpQueueTest.executor": "Run",
+    "Gradle.WebSocketIngressHandlerTest (1).executor": "Run",
+    "Gradle.WebSocketIngressHandlerTest (2).executor": "Run",
     "Gradle.WebSocketIngressHandlerTest.executor": "Run",
+    "Gradle.WebSocketIngressHandlerTest.should publish to charger_connected on connect.executor": "Run",
+    "Gradle.WebSocketIngressHandlerTest.should publish to charger_disconnected on disconnect.executor": "Run",
+    "Gradle.WebSocketIngressHandlerTest.should publish to charger_telemetry on default route.executor": "Run",
+    "Gradle.WebSocketIngressHandlerTest.should register charger on CONNECT.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -106,13 +120,14 @@
       <recent name="C:\Users\USER\Documents\projects\paragon\charger-service\src\main\kotlin" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="lambda" />
       <recent name="event.handler" />
       <recent name="charger" />
       <recent name="fp" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.WebSocketIngressHandlerTest">
-    <configuration name="CommandQueueManagerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.WebSocketIngressHandlerTest (2)">
+    <configuration name="WebSocketIngressHandlerTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -125,7 +140,7 @@
           <list>
             <option value=":charger-service:test" />
             <option value="--tests" />
-            <option value="&quot;CommandQueueManagerTest&quot;" />
+            <option value="&quot;lambda.WebSocketIngressHandlerTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -136,7 +151,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="CommandQueueManagerTest.dequeue should return the first command in the queue" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="WebSocketIngressHandlerTest (2)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -149,7 +164,7 @@
           <list>
             <option value=":charger-service:test" />
             <option value="--tests" />
-            <option value="&quot;CommandQueueManagerTest.dequeue should return the first command in the queue&quot;" />
+            <option value="&quot;gw.WebSocketIngressHandlerTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -160,7 +175,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="CommandQueueManagerTest.enqueue should add multiple commands to the same queue" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="WebSocketIngressHandlerTest.should publish to charger_connected on connect" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -173,7 +188,7 @@
           <list>
             <option value=":charger-service:test" />
             <option value="--tests" />
-            <option value="&quot;CommandQueueManagerTest.enqueue should add multiple commands to the same queue&quot;" />
+            <option value="&quot;lambda.WebSocketIngressHandlerTest.should publish to charger_connected on connect&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -184,31 +199,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="PersistentFpQueueTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":common:test" />
-            <option value="--tests" />
-            <option value="&quot;PersistentFpQueueTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="WebSocketIngressHandlerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="WebSocketIngressHandlerTest.should publish to charger_disconnected on disconnect" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -221,7 +212,31 @@
           <list>
             <option value=":charger-service:test" />
             <option value="--tests" />
-            <option value="&quot;charger.WebSocketIngressHandlerTest&quot;" />
+            <option value="&quot;lambda.WebSocketIngressHandlerTest.should publish to charger_disconnected on disconnect&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="WebSocketIngressHandlerTest.should register charger on CONNECT" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":charger-service:test" />
+            <option value="--tests" />
+            <option value="&quot;gw.WebSocketIngressHandlerTest.should register charger on CONNECT&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -234,11 +249,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.WebSocketIngressHandlerTest" />
-        <item itemvalue="Gradle.CommandQueueManagerTest" />
-        <item itemvalue="Gradle.CommandQueueManagerTest.dequeue should return the first command in the queue" />
-        <item itemvalue="Gradle.CommandQueueManagerTest.enqueue should add multiple commands to the same queue" />
-        <item itemvalue="Gradle.PersistentFpQueueTest" />
+        <item itemvalue="Gradle.WebSocketIngressHandlerTest (2)" />
+        <item itemvalue="Gradle.WebSocketIngressHandlerTest.should register charger on CONNECT" />
+        <item itemvalue="Gradle.WebSocketIngressHandlerTest.should publish to charger_connected on connect" />
+        <item itemvalue="Gradle.WebSocketIngressHandlerTest (1)" />
+        <item itemvalue="Gradle.WebSocketIngressHandlerTest.should publish to charger_disconnected on disconnect" />
       </list>
     </recent_temporary>
   </component>
@@ -259,12 +274,21 @@
       <option name="project" value="LOCAL" />
       <updated>1745238237334</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add event handler - all tests pass">
+      <option name="closed" value="true" />
+      <created>1745250860373</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1745250860374</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add tests to queue - all green" />
-    <option name="LAST_COMMIT_MESSAGE" value="add tests to queue - all green" />
+    <MESSAGE value="add event handler - all tests pass" />
+    <option name="LAST_COMMIT_MESSAGE" value="add event handler - all tests pass" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
