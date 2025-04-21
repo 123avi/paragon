@@ -1,6 +1,5 @@
 package org.paragontech.charger
 
-import org.paragontech.charger.CommandEnvelope
 import org.paragontech.common.fp.FpQueue
 import org.paragontech.common.fp.fpQueueOf
 

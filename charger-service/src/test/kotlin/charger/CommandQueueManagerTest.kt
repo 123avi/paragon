@@ -1,8 +1,8 @@
 package charger
-import org.paragontech.charger.CommandEnvelope
-import org.paragontech.charger.CommandQueueManager
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import org.paragontech.charger.CommandEnvelope
+import org.paragontech.charger.CommandQueueManager
 
 
 class CommandQueueManagerTest {

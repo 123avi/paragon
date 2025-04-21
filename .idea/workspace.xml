@@ -4,22 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dab0ba2e-2e59-4058-ae68-31360874c326" name="Changes" comment="add event handler - all tests pass">
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/SQSEventPublisher.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/WebSocketRouterHandler.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/lambda/WebSocketIngressHandlerTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/fp/EventPublisherFn.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infra/main.tf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infra/outputs.tf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infra/variables.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="dab0ba2e-2e59-4058-ae68-31360874c326" name="Changes" comment="add tests and terraform files to support lambda - all tests pass">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charger-service/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/event/handler/APIGatewayResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/gw/APIGatewayResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/event/handler/EventPublisher.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/EventPublisher.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/event/handler/WebSocketIngressHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/WebSocketIngressHandler.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charger-service/src/test/kotlin/event/handler/WebSocketIngressHandlerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/gw/WebSocketIngressHandlerTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/CommandQueueManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/CommandQueueManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/event/handler/EventPublisher.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/test/kotlin/charger/CommandQueueManagerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/charger/CommandQueueManagerTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/src/main/kotlin/Utilities.kt" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/main/kotlin/Utilities.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/src/test/kotlin/UtilitiesTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/test/kotlin/UtilitiesTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -282,20 +273,30 @@
       <option name="project" value="LOCAL" />
       <updated>1745250860374</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add tests and terraform files to support lambda - all tests pass">
+      <option name="closed" value="true" />
+      <created>1745259151397</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1745259151397</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add tests to queue - all green" />
     <MESSAGE value="add event handler - all tests pass" />
-    <option name="LAST_COMMIT_MESSAGE" value="add event handler - all tests pass" />
+    <MESSAGE value="add tests and terraform files to support lambda" />
+    <MESSAGE value="add tests and terraform files to support lambda - all tests pass" />
+    <option name="LAST_COMMIT_MESSAGE" value="add tests and terraform files to support lambda - all tests pass" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/charger-service/src/main/kotlin/charger/CommandQueueManager.kt</url>
-          <line>22</line>
+          <line>21</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
