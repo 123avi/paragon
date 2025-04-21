@@ -1,10 +1,43 @@
-val kotlinxImmutableVersion: String by project
+//val kotlinxImmutableVersion: String by project
+
+plugins {
+    id("org.springframework.boot") version "3.2.5"
+    id("io.spring.dependency-management") version "1.1.4"
+    application
+//    kotlin("jvm") version "2.1.20"
+    kotlin("plugin.spring") version "2.1.20"
+}
+springBoot{
+    mainClass.set("org.paragontech.charger.ChargerServiceKt")
+}
 
 dependencies {
-    implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:$kotlinxImmutableVersion")
-    implementation(project(":common"))
-    testImplementation(kotlin("test"))
+   implementation(project(":common"))
 
+    // === Spring Boot ===
+    implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-starter-web") // optional for REST endpoints
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
+
+    // === Kotlin + Jackson ===
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+    // === AWS Lambda Events for WebSocket Support ===
+    implementation("com.amazonaws:aws-lambda-java-events:3.15.0")
+    implementation("com.amazonaws:aws-lambda-java-core:1.2.3")
+
+    // === Kafka (optional, only if you're producing events) ===
+    implementation("org.springframework.kafka:spring-kafka")
+
+    // === Test: JUnit 5 + MockK ===
+    testImplementation("org.springframework.boot:spring-boot-starter-test") {
+        exclude(group = "org.mockito") // exclude if you prefer MockK
+    }
+    testImplementation("io.mockk:mockk:1.13.10")
+    testImplementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.0")
 }
 
 
