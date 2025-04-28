@@ -3,11 +3,12 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.paragontech.charger.CommandEnvelope
 import org.paragontech.charger.CommandQueueManager
+import org.paragontech.charger.CommandType
 
 
 class CommandQueueManagerTest {
 
-    private fun createCommand(chargerId: String, type: String = "StartTransaction", retries: Int = 3): CommandEnvelope =
+    private fun createCommand(chargerId: String, type: CommandType = CommandType.StartTransaction, retries: Int = 3): CommandEnvelope =
         CommandEnvelope(chargerId = chargerId, commandType = type, payload = "{}", retriesLeft = retries)
 
     @Test
@@ -23,8 +24,8 @@ class CommandQueueManagerTest {
     }
     @Test
     fun `enqueue should add multiple commands to the same queue`() {
-        val cmd1 = createCommand("charger-1", "StartTransaction")
-        val cmd2 = createCommand("charger-1", "StopTransaction")
+        val cmd1 = createCommand("charger-1", CommandType.StartTransaction)
+        val cmd2 = createCommand("charger-1", CommandType.StopTransaction)
         val manager = CommandQueueManager().enqueue(cmd1).enqueue(cmd2)
 
         val queue = manager.getQueue("charger-1").toList()
@@ -50,8 +51,8 @@ class CommandQueueManagerTest {
 
     @Test
     fun `dequeue should return the first command in the queue`() {
-        val cmd1 = createCommand("charger-1", "StartTransaction")
-        val cmd2 = createCommand("charger-1", "StopTransaction")
+        val cmd1 = createCommand("charger-1", CommandType.StartTransaction)
+        val cmd2 = createCommand("charger-1", CommandType.StopTransaction)
         val manager = CommandQueueManager().enqueue(cmd1).enqueue(cmd2)
 
         val updated = manager.dequeue("charger-1")
@@ -74,8 +75,8 @@ class CommandQueueManagerTest {
 
     @Test
     fun `dequeue should not affect other charger queues`() {
-        val cmd1 = createCommand("charger-1", "StartTransaction")
-        val cmd2 = createCommand("charger-2", "StopTransaction")
+        val cmd1 = createCommand("charger-1", CommandType.StartTransaction)
+        val cmd2 = createCommand("charger-2", CommandType.StopTransaction)
         val manager = CommandQueueManager().enqueue(cmd1).enqueue(cmd2)
 
         val updated = manager.dequeue("charger-1")
@@ -100,8 +101,8 @@ class CommandQueueManagerTest {
     }
     @Test
     fun `dequeue should remove the first command from the queue`() {
-        val cmd1 = createCommand("charger-1", "StartTransaction")
-        val cmd2 = createCommand("charger-1", "StopTransaction")
+        val cmd1 = createCommand("charger-1", CommandType.StartTransaction)
+        val cmd2 = createCommand("charger-1", CommandType.StopTransaction)
         val manager = CommandQueueManager().enqueue(cmd1).enqueue(cmd2)
 
         val updated = manager.dequeue("charger-1")

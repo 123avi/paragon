@@ -6,6 +6,7 @@ plugins {
     application
 //    kotlin("jvm") version "2.1.20"
     kotlin("plugin.spring") version "2.1.20"
+    kotlin("plugin.serialization") version "2.1.20"
 }
 springBoot{
     mainClass.set("org.paragontech.charger.ChargerServiceKt")
@@ -13,6 +14,9 @@ springBoot{
 
 dependencies {
    implementation(project(":common"))
+
+    implementation(kotlin("stdlib"))
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
 
     // === Spring Boot ===
     implementation("org.springframework.boot:spring-boot-starter")
@@ -38,10 +42,16 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.mockito") // exclude if you prefer MockK
     }
+
     testImplementation("io.mockk:mockk:1.13.10")
     testImplementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.0")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
+    testImplementation(kotlin("test"))
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+
+
+
 
 }
 
