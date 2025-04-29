@@ -13,12 +13,12 @@ class SqsCommandQueueManager(
     private val inFlightCommands: MutableMap<String, String> = mutableMapOf()
     private val currentCommandCache: MutableMap<String, CommandEnvelope> = mutableMapOf()
 
-    override suspend fun enqueueCommand(chargerId: String, command: CommandEnvelope) {
+    override suspend fun enqueueCommand(command: CommandEnvelope) {
         val messageBody = json.encodeToString(command)
 
         val request = SendMessageRequest.builder()
             .queueUrl(queueUrl)
-            .messageGroupId(chargerId)
+            .messageGroupId(command.chargerId)
             .messageDeduplicationId(command.commandId)
             .messageBody(messageBody)
             .build()
@@ -26,7 +26,7 @@ class SqsCommandQueueManager(
         sqsClient.sendMessage(request)
     }
 
-    override suspend fun nextCommand(chargerId: String): CommandEnvelope? {
+    override suspend fun nextCommand(): CommandEnvelope? {
 
         val request = ReceiveMessageRequest.builder()
             .queueUrl(queueUrl)
@@ -43,11 +43,12 @@ class SqsCommandQueueManager(
 
         // Keep the receipt handle for later deletion
         inFlightCommands[command.commandId] = msg.receiptHandle()
+        currentCommandCache[command.commandId] = command
 
         return command
     }
 
-    override suspend fun acknowledgeCommand(chargerId: String, commandId: String) {
+    override suspend fun acknowledgeCommand( commandId: String) {
         val receiptHandle = inFlightCommands.remove(commandId) ?: return
 
         val deleteRequest = DeleteMessageRequest.builder()
@@ -56,9 +57,10 @@ class SqsCommandQueueManager(
             .build()
 
         sqsClient.deleteMessage(deleteRequest)
+        currentCommandCache.remove(commandId)
     }
 
-    override suspend fun retryCommand(chargerId: String, commandId: String) {
+    override suspend fun retryCommand( commandId: String) {
         val receiptHandle = inFlightCommands.remove(commandId) ?: return
         val originalCommand = currentCommandCache.remove(commandId) ?: return
 
@@ -72,15 +74,15 @@ class SqsCommandQueueManager(
         // Retry only if retries are left
         if (originalCommand.retriesLeft > 0) {
             val retriedCommand = originalCommand.copy(retriesLeft = originalCommand.retriesLeft - 1)
-            enqueueCommand(chargerId, retriedCommand)
+            enqueueCommand(retriedCommand)
         }
     }
 
-    override suspend fun currentCommand(chargerId: String): CommandEnvelope? {
-        return currentCommandCache.values.find { it.chargerId == chargerId }
+    override suspend fun currentCommand(commandId: String): CommandEnvelope? {
+        return currentCommandCache[commandId]
     }
 
-    override suspend fun queueSize(chargerId: String): Int {
+    override suspend fun queueSize(): Int {
         val attributes = sqsClient.getQueueAttributes(
             GetQueueAttributesRequest.builder()
                 .queueUrl(queueUrl)

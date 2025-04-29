@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dab0ba2e-2e59-4058-ae68-31360874c326" name="Changes" comment="adding command type and DistributedCommandQueue all tests pass">
-      <change afterPath="$PROJECT_DIR$/charger-service/readme.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/CommandType.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/DistributedCommandQueue.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/SqsCommandQueueManager.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/charger/SqsCommandQueueManagerTest.kt" afterDir="false" />
+    <list default="true" id="dab0ba2e-2e59-4058-ae68-31360874c326" name="Changes" comment="add SqsCommandQueueManagerTest pass">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charger-service/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/CommandEnvelope.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/CommandEnvelope.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charger-service/src/test/kotlin/charger/CommandQueueManagerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/charger/CommandQueueManagerTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/DistributedCommandQueue.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/DistributedCommandQueue.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/SqsCommandQueueManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/SqsCommandQueueManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/test/kotlin/charger/SqsCommandQueueManagerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/charger/SqsCommandQueueManagerTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,6 +86,8 @@
     "Gradle.Download Sources.executor": "Run",
     "Gradle.PersistentFpQueueTest.executor": "Run",
     "Gradle.SqsCommandQueueManagerTest.executor": "Run",
+    "Gradle.SqsCommandQueueManagerTest.retryCommand should re-enqueue the command with decremented retries.executor": "Run",
+    "Gradle.SqsCommandQueueManagerTest.retryCommand should remove the command if no retries are left.executor": "Run",
     "Gradle.WebSocketIngressHandlerTest (1).executor": "Run",
     "Gradle.WebSocketIngressHandlerTest (2).executor": "Run",
     "Gradle.WebSocketIngressHandlerTest.executor": "Run",
@@ -148,6 +145,54 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="SqsCommandQueueManagerTest.retryCommand should re-enqueue the command with decremented retries" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":charger-service:test" />
+            <option value="--tests" />
+            <option value="&quot;charger.SqsCommandQueueManagerTest.retryCommand should re-enqueue the command with decremented retries&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="SqsCommandQueueManagerTest.retryCommand should remove the command if no retries are left" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":charger-service:test" />
+            <option value="--tests" />
+            <option value="&quot;charger.SqsCommandQueueManagerTest.retryCommand should remove the command if no retries are left&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="WebSocketIngressHandlerTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -162,30 +207,6 @@
             <option value=":charger-service:test" />
             <option value="--tests" />
             <option value="&quot;lambda.WebSocketIngressHandlerTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="WebSocketIngressHandlerTest (2)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":charger-service:test" />
-            <option value="--tests" />
-            <option value="&quot;gw.WebSocketIngressHandlerTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -220,37 +241,13 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="WebSocketIngressHandlerTest.should register charger on CONNECT" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":charger-service:test" />
-            <option value="--tests" />
-            <option value="&quot;gw.WebSocketIngressHandlerTest.should register charger on CONNECT&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.SqsCommandQueueManagerTest" />
+        <item itemvalue="Gradle.SqsCommandQueueManagerTest.retryCommand should re-enqueue the command with decremented retries" />
+        <item itemvalue="Gradle.SqsCommandQueueManagerTest.retryCommand should remove the command if no retries are left" />
         <item itemvalue="Gradle.WebSocketIngressHandlerTest (1)" />
         <item itemvalue="Gradle.WebSocketIngressHandlerTest.should publish to charger_disconnected on disconnect" />
-        <item itemvalue="Gradle.WebSocketIngressHandlerTest (2)" />
-        <item itemvalue="Gradle.WebSocketIngressHandlerTest.should register charger on CONNECT" />
       </list>
     </recent_temporary>
   </component>
@@ -295,7 +292,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745263269838</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add SqsCommandQueueManagerTest pass">
+      <option name="closed" value="true" />
+      <created>1745851819527</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1745851819527</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -315,6 +320,7 @@
     <MESSAGE value="add tests and terraform files to support lambda" />
     <MESSAGE value="add tests and terraform files to support lambda - all tests pass" />
     <MESSAGE value="adding command type and DistributedCommandQueue all tests pass" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding command type and DistributedCommandQueue all tests pass" />
+    <MESSAGE value="add SqsCommandQueueManagerTest pass" />
+    <option name="LAST_COMMIT_MESSAGE" value="add SqsCommandQueueManagerTest pass" />
   </component>
 </project>
