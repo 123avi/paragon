@@ -4,18 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dab0ba2e-2e59-4058-ae68-31360874c326" name="Changes" comment="add tests to SqsCommandQueueManagerTest, remove chargerID from SqsCommandQueueManager.kt all tests pass. set test-util for mocking environment, move Environment.kt to common">
-      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/EventType.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-util/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/transaction-manager/src/main/kotlin/Main.kt" afterDir="false" />
+    <list default="true" id="dab0ba2e-2e59-4058-ae68-31360874c326" name="Changes" comment="change event type to emum EventType.kt for safety and readability. fix tests accordingly all pass, remove duplicate class">
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/Main.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/Main.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/route/ErrorType.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/route/HandlerResponse.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test-util/src/main/kotlin/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/LambdaBootstrap.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/LambdaBootstrap.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/WebSocketIngressHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/WebSocketIngressHandler.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charger-service/src/test/kotlin/gw/WebSocketIngressHandlerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/gw/WebSocketIngressHandlerTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charger-service/src/test/kotlin/lambda/LambdaBootstrapTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/lambda/LambdaBootstrapTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/WebSocketRouterHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/WebSocketRouterHandler.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/charger-service/src/test/kotlin/lambda/WebSocketIngressHandlerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/lambda/WebSocketIngressHandlerTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/Environment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/Environment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-util/src/main/kotlin/TestEnvironment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/test-util/src/main/kotlin/TestEnvironment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/common/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,15 +52,16 @@
       <list>
         <option value="Kotlin Interface" />
         <option value="Class" />
-        <option value="Kotlin Class" />
         <option value="Kotlin Data Class" />
         <option value="Kotlin Object" />
         <option value="Kotlin Enum" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -107,6 +108,7 @@
     "Gradle.WebSocketIngressHandlerTest.should publish to charger_disconnected on disconnect.executor": "Debug",
     "Gradle.WebSocketIngressHandlerTest.should publish to charger_telemetry on default route.executor": "Run",
     "Gradle.WebSocketIngressHandlerTest.should register charger on CONNECT.executor": "Run",
+    "Gradle.WebSocketIngressHandlerTest.should return 400 if chargerId is missing.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -186,30 +188,6 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="WebSocketIngressHandlerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":charger-service:test" />
-            <option value="--tests" />
-            <option value="&quot;gw.WebSocketIngressHandlerTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
     <configuration name="WebSocketIngressHandlerTest.should publish to charger_connected on connect (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -258,13 +236,37 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="WebSocketIngressHandlerTest.should return 400 if chargerId is missing" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":charger-service:test" />
+            <option value="--tests" />
+            <option value="&quot;lambda.WebSocketIngressHandlerTest.should return 400 if chargerId is missing&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.WebSocketIngressHandlerTest (1)" />
+        <item itemvalue="Gradle.WebSocketIngressHandlerTest.should return 400 if chargerId is missing" />
         <item itemvalue="Gradle.WebSocketIngressHandlerTest.should publish to charger_connected on connect (1)" />
         <item itemvalue="Gradle.LambdaBootstrapTest" />
         <item itemvalue="Gradle.WebSocketIngressHandlerTest.should publish to charger_connected on connect" />
-        <item itemvalue="Gradle.WebSocketIngressHandlerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -333,7 +335,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746447411593</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="change event type to emum EventType.kt for safety and readability. fix tests accordingly all pass, remove duplicate class">
+      <option name="closed" value="true" />
+      <created>1746449844476</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1746449844477</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -356,7 +366,9 @@
     <MESSAGE value="add SqsCommandQueueManagerTest pass" />
     <MESSAGE value="add tests to SqsCommandQueueManagerTest, remove chargerID from SqsCommandQueueManager.kt all tests pass" />
     <MESSAGE value="add tests to SqsCommandQueueManagerTest, remove chargerID from SqsCommandQueueManager.kt all tests pass. set test-util for mocking environment, move Environment.kt to common" />
-    <option name="LAST_COMMIT_MESSAGE" value="add tests to SqsCommandQueueManagerTest, remove chargerID from SqsCommandQueueManager.kt all tests pass. set test-util for mocking environment, move Environment.kt to common" />
+    <MESSAGE value="change event type to emum EventType.kt for safety and readability. fix tests accordingly all pass" />
+    <MESSAGE value="change event type to emum EventType.kt for safety and readability. fix tests accordingly all pass, remove duplicate class" />
+    <option name="LAST_COMMIT_MESSAGE" value="change event type to emum EventType.kt for safety and readability. fix tests accordingly all pass, remove duplicate class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

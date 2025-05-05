@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.paragontech.EventType
 import org.paragontech.lambda.WebSocketIngressHandler
+import org.paragontech.route.ErrorType
 import java.util.concurrent.atomic.AtomicReference
 
 
@@ -67,12 +68,12 @@ class WebSocketIngressHandlerTest {
     }
 
     @Test
-    fun `should return 500 if chargerId is missing`() {
+    fun `should return 400 if chargerId is missing`() {
         val event = eventWithRoute("\$connect")
 
         val response = handler.handle(event)
 
-        assertEquals(500, response.statusCode)
+        assertEquals(ErrorType.BAD_REQUEST.code, response.statusCode)
         assert(response.body.contains("Missing chargerId"))
     }
 

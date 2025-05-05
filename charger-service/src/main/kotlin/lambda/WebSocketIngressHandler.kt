@@ -3,7 +3,7 @@ package org.paragontech.lambda
 import com.amazonaws.services.lambda.runtime.events.APIGatewayV2WebSocketEvent
 import org.paragontech.Environment
 import org.paragontech.EventType
-import org.paragontech.gw.APIGatewayResponse
+import org.paragontech.route.HandlerResponse
 
 
 //@Component
@@ -12,7 +12,7 @@ class WebSocketIngressHandler(
 ) {
 
 
-    fun handle(event: APIGatewayV2WebSocketEvent): APIGatewayResponse {
+    fun handle(event: APIGatewayV2WebSocketEvent): HandlerResponse {
         val routeKey = event.requestContext.routeKey
         val connectionId = event.requestContext.connectionId
         val publish = env.publish
@@ -22,7 +22,7 @@ class WebSocketIngressHandler(
             when (routeKey) {
                 "\$connect" -> {
                     val chargerId = event.queryStringParameters?.get("chargerId")
-                        ?: return APIGatewayResponse.error("Missing chargerId")
+                        ?: return  HandlerResponse.badRequest(message = "Missing chargerId")
                     val payload = """{"chargerId":"$chargerId","connectionId":"$connectionId"}"""
                     publish(EventType.CHARGER_CONNECTED, payload)
                 }
@@ -34,15 +34,16 @@ class WebSocketIngressHandler(
 
                 else -> {
                     // e.g., telemetry or status update
-                    val body = event.body ?: return APIGatewayResponse.error("Missing body")
+                    val body = event.body ?: return  HandlerResponse.badRequest(message = "Missing body")
                     publish(EventType.CHARGER_TELEMETRY, body)
                 }
+
             }
 
-            APIGatewayResponse.ok()
+            HandlerResponse.Success()
         } catch (ex: Exception) {
             ex.printStackTrace()
-            APIGatewayResponse.error("Handler error: ${ex.message}")
+            HandlerResponse.internalServerError()
         }
     }
 
