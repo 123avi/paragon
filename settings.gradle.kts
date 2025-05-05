@@ -23,8 +23,11 @@ include(":app")
 include(":utils")
 
 rootProject.name = "paragon"
-include(":common",
+include(
+    ":common",
+    ":test-util",
     ":charger-service",
     ":transaction-manager",
-    ":billing-service")
+    ":billing-service"
+)
 include("infra")

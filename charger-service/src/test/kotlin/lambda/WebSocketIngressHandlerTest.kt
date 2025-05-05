@@ -1,6 +1,7 @@
 package lambda
 
 import com.amazonaws.services.lambda.runtime.events.APIGatewayV2WebSocketEvent
+import com.paragontech.TestEnvironment
 import io.mockk.junit5.MockKExtension
 import io.mockk.mockk
 import io.mockk.verify
@@ -9,18 +10,21 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.paragontech.lambda.WebSocketIngressHandler
+import java.util.concurrent.atomic.AtomicReference
 
 
 @ExtendWith(MockKExtension::class)
 class WebSocketIngressHandlerTest {
 
-    private val publishFn = mockk<(String, String) -> Unit>(relaxed = true)
+    private lateinit var captured: AtomicReference<Pair<String, String>?>
     private lateinit var handler: WebSocketIngressHandler
 
 
     @BeforeEach
     fun setup() {
-        handler = WebSocketIngressHandler(publishFn)
+        captured = AtomicReference()
+        val env = TestEnvironment.withCapturedPublisher(captured)
+        handler = WebSocketIngressHandler(env)
     }
 
     @Test
@@ -29,11 +33,11 @@ class WebSocketIngressHandlerTest {
 
         val response = handler.handle(event)
 
-        verify {
-            publishFn("charger.connected", match { it.contains("CH-01") && it.contains("abc123") })
-        }
-
+        val (topic, message) = captured.get()!!
         assertEquals(200, response.statusCode)
+        assertEquals("charger.connected", topic)
+        assert(message.contains("CH-01"))
+        assert(message.contains("abc123"))
     }
 
     @Test
@@ -42,10 +46,10 @@ class WebSocketIngressHandlerTest {
 
         val response = handler.handle(event)
 
-        verify {
-            publishFn("charger.disconnected", match { it.contains("abc123") })
-        }
+        val (topic, message) = captured.get()!!
         assertEquals(200, response.statusCode)
+        assertEquals("charger.disconnected", topic)
+        assert(message.contains("abc123"))
     }
 
     @Test
@@ -57,17 +61,15 @@ class WebSocketIngressHandlerTest {
 
         val response = handler.handle(event)
 
-        verify {
-            publishFn("charger.telemetry", payload)
-        }
+        val (topic, message) = captured.get()!!
         assertEquals(200, response.statusCode)
+        assertEquals("charger.telemetry", topic)
+        assertEquals(payload, message)
     }
 
     @Test
     fun `should return 500 if chargerId is missing`() {
-        val event = eventWithRoute("\$connect").apply {
-            queryStringParameters = null
-        }
+        val event = eventWithRoute("\$connect")
 
         val response = handler.handle(event)
 

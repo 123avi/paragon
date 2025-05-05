@@ -14,6 +14,7 @@ springBoot{
 
 dependencies {
    implementation(project(":common"))
+   implementation(project(":test-util"))
 
     implementation(kotlin("stdlib"))
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")

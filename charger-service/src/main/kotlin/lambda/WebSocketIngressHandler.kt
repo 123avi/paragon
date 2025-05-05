@@ -1,7 +1,7 @@
 package org.paragontech.lambda
 
 import com.amazonaws.services.lambda.runtime.events.APIGatewayV2WebSocketEvent
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import org.paragontech.Environment
 import org.paragontech.gw.APIGatewayResponse
 
 //import org.springframework.boot.availability.AvailabilityChangeEvent.publish
@@ -9,13 +9,14 @@ import org.paragontech.gw.APIGatewayResponse
 
 //@Component
 class WebSocketIngressHandler(
-    private val publish: (topic: String, payload: String) -> Unit
+    private val env: Environment
 ) {
-    private val objectMapper = jacksonObjectMapper()
+
 
     fun handle(event: APIGatewayV2WebSocketEvent): APIGatewayResponse {
         val routeKey = event.requestContext.routeKey
         val connectionId = event.requestContext.connectionId
+        val publish = env.publish
 
 
         return try {
