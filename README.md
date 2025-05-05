@@ -21,3 +21,6 @@ The shared build logic was extracted to a convention plugin located in `buildSrc
 
 This project uses a version catalog (see `gradle/libs.versions.toml`) to declare and version dependencies
 and both a build cache and a configuration cache (see `gradle.properties`).
+
+# EV charging managment app (WIP)
+![ev-charging mangment diagram](https://github.com/123avi/paragon/blob/main/ev-charging%20diagram.png)
