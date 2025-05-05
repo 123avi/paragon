@@ -3,15 +3,19 @@ package org.paragontech.lambda
 import com.amazonaws.services.lambda.runtime.Context
 import com.amazonaws.services.lambda.runtime.RequestHandler
 import com.amazonaws.services.lambda.runtime.events.APIGatewayV2WebSocketEvent
+import org.paragontech.route.HandlerResponse
 
-class WebSocketRouterHandler : RequestHandler<APIGatewayV2WebSocketEvent, Map<String, Any>> {
+class WebSocketRouterHandler(
+    private val handler: WebSocketIngressHandler  = LambdaBootstrap().webSocketIngressHandler()
+) : RequestHandler<APIGatewayV2WebSocketEvent, Map<String, Any>> {
 
-    private val handler = LambdaBootstrap().webSocketIngressHandler()
-
-    override fun handleRequest(
-        input: APIGatewayV2WebSocketEvent,
-        context: Context
-    ): Map<String, Any>? {
-        return handler.handle(input).toApiGatewayResponse()
+    override fun handleRequest(input: APIGatewayV2WebSocketEvent, context: Context): Map<String, Any> {
+        return try {
+            handler.handle(input).toApiGatewayResponse()
+        } catch (e: Exception) {
+            val message = "Unhandled exception: ${e.message}"
+            context.logger.log(message)
+           HandlerResponse.internalServerError(message).toApiGatewayResponse()
+        }
     }
 }

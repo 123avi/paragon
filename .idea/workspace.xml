@@ -4,18 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dab0ba2e-2e59-4058-ae68-31360874c326" name="Changes" comment="change event type to emum EventType.kt for safety and readability. fix tests accordingly all pass, remove duplicate class">
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/Main.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/Main.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/route/ErrorType.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/route/HandlerResponse.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-util/src/main/kotlin/Main.kt" afterDir="false" />
+    <list default="true" id="dab0ba2e-2e59-4058-ae68-31360874c326" name="Changes" comment="idiomatic response handling using HttpStatus">
+      <change afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/lambda/WebSocketRouterHandlerTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/WebSocketIngressHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/WebSocketIngressHandler.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/WebSocketRouterHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/WebSocketRouterHandler.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charger-service/src/test/kotlin/lambda/WebSocketIngressHandlerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/lambda/WebSocketIngressHandlerTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/common/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,6 +101,9 @@
     "Gradle.WebSocketIngressHandlerTest.should publish to charger_telemetry on default route.executor": "Run",
     "Gradle.WebSocketIngressHandlerTest.should register charger on CONNECT.executor": "Run",
     "Gradle.WebSocketIngressHandlerTest.should return 400 if chargerId is missing.executor": "Run",
+    "Gradle.WebSocketRouterHandlerTest.should map handler response to API GW format.executor": "Run",
+    "Gradle.WebSocketRouterHandlerTest.should return 200 when handler returns success.executor": "Run",
+    "Gradle.WebSocketRouterHandlerTest.should return 500 when handler throws.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -139,31 +134,7 @@
       <recent name="org.paragontech.common" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.WebSocketIngressHandlerTest (1)">
-    <configuration name="LambdaBootstrapTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":charger-service:test" />
-            <option value="--tests" />
-            <option value="&quot;lambda.LambdaBootstrapTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Gradle.WebSocketRouterHandlerTest.should return 500 when handler throws">
     <configuration name="WebSocketIngressHandlerTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -178,54 +149,6 @@
             <option value=":charger-service:test" />
             <option value="--tests" />
             <option value="&quot;lambda.WebSocketIngressHandlerTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="WebSocketIngressHandlerTest.should publish to charger_connected on connect (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":charger-service:test" />
-            <option value="--tests" />
-            <option value="&quot;lambda.WebSocketIngressHandlerTest.should publish to charger_connected on connect&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="WebSocketIngressHandlerTest.should publish to charger_connected on connect" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":charger-service:test" />
-            <option value="--tests" />
-            <option value="&quot;gw.WebSocketIngressHandlerTest.should publish to charger_connected on connect&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -260,13 +183,85 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="WebSocketRouterHandlerTest.should map handler response to API GW format" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":charger-service:test" />
+            <option value="--tests" />
+            <option value="&quot;lambda.WebSocketRouterHandlerTest.should map handler response to API GW format&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="WebSocketRouterHandlerTest.should return 200 when handler returns success" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":charger-service:test" />
+            <option value="--tests" />
+            <option value="&quot;lambda.WebSocketRouterHandlerTest.should return 200 when handler returns success&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="WebSocketRouterHandlerTest.should return 500 when handler throws" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":charger-service:test" />
+            <option value="--tests" />
+            <option value="&quot;lambda.WebSocketRouterHandlerTest.should return 500 when handler throws&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.WebSocketRouterHandlerTest.should return 500 when handler throws" />
+        <item itemvalue="Gradle.WebSocketRouterHandlerTest.should return 200 when handler returns success" />
+        <item itemvalue="Gradle.WebSocketRouterHandlerTest.should map handler response to API GW format" />
         <item itemvalue="Gradle.WebSocketIngressHandlerTest (1)" />
         <item itemvalue="Gradle.WebSocketIngressHandlerTest.should return 400 if chargerId is missing" />
-        <item itemvalue="Gradle.WebSocketIngressHandlerTest.should publish to charger_connected on connect (1)" />
-        <item itemvalue="Gradle.LambdaBootstrapTest" />
-        <item itemvalue="Gradle.WebSocketIngressHandlerTest.should publish to charger_connected on connect" />
       </list>
     </recent_temporary>
   </component>
@@ -343,7 +338,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746449844477</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="idiomatic response handling using HttpStatus">
+      <option name="closed" value="true" />
+      <created>1746455898230</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1746455898230</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -368,7 +371,8 @@
     <MESSAGE value="add tests to SqsCommandQueueManagerTest, remove chargerID from SqsCommandQueueManager.kt all tests pass. set test-util for mocking environment, move Environment.kt to common" />
     <MESSAGE value="change event type to emum EventType.kt for safety and readability. fix tests accordingly all pass" />
     <MESSAGE value="change event type to emum EventType.kt for safety and readability. fix tests accordingly all pass, remove duplicate class" />
-    <option name="LAST_COMMIT_MESSAGE" value="change event type to emum EventType.kt for safety and readability. fix tests accordingly all pass, remove duplicate class" />
+    <MESSAGE value="idiomatic response handling using HttpStatus" />
+    <option name="LAST_COMMIT_MESSAGE" value="idiomatic response handling using HttpStatus" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
