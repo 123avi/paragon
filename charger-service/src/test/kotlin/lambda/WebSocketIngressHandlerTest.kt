@@ -3,12 +3,11 @@ package lambda
 import com.amazonaws.services.lambda.runtime.events.APIGatewayV2WebSocketEvent
 import com.paragontech.TestEnvironment
 import io.mockk.junit5.MockKExtension
-import io.mockk.mockk
-import io.mockk.verify
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import org.paragontech.EventType
 import org.paragontech.lambda.WebSocketIngressHandler
 import java.util.concurrent.atomic.AtomicReference
 
@@ -16,7 +15,7 @@ import java.util.concurrent.atomic.AtomicReference
 @ExtendWith(MockKExtension::class)
 class WebSocketIngressHandlerTest {
 
-    private lateinit var captured: AtomicReference<Pair<String, String>?>
+    private lateinit var captured: AtomicReference<Pair<EventType, String>?>
     private lateinit var handler: WebSocketIngressHandler
 
 
@@ -35,7 +34,7 @@ class WebSocketIngressHandlerTest {
 
         val (topic, message) = captured.get()!!
         assertEquals(200, response.statusCode)
-        assertEquals("charger.connected", topic)
+        assertEquals(EventType.CHARGER_CONNECTED, topic)
         assert(message.contains("CH-01"))
         assert(message.contains("abc123"))
     }
@@ -48,7 +47,7 @@ class WebSocketIngressHandlerTest {
 
         val (topic, message) = captured.get()!!
         assertEquals(200, response.statusCode)
-        assertEquals("charger.disconnected", topic)
+        assertEquals(EventType.CHARGER_DISCONNECTED, topic)
         assert(message.contains("abc123"))
     }
 
@@ -63,7 +62,7 @@ class WebSocketIngressHandlerTest {
 
         val (topic, message) = captured.get()!!
         assertEquals(200, response.statusCode)
-        assertEquals("charger.telemetry", topic)
+        assertEquals(EventType.CHARGER_TELEMETRY, topic)
         assertEquals(payload, message)
     }
 

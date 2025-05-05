@@ -2,9 +2,8 @@ package org.paragontech.lambda
 
 import com.amazonaws.services.lambda.runtime.events.APIGatewayV2WebSocketEvent
 import org.paragontech.Environment
+import org.paragontech.EventType
 import org.paragontech.gw.APIGatewayResponse
-
-//import org.springframework.boot.availability.AvailabilityChangeEvent.publish
 
 
 //@Component
@@ -25,18 +24,18 @@ class WebSocketIngressHandler(
                     val chargerId = event.queryStringParameters?.get("chargerId")
                         ?: return APIGatewayResponse.error("Missing chargerId")
                     val payload = """{"chargerId":"$chargerId","connectionId":"$connectionId"}"""
-                    publish("charger.connected", payload)
+                    publish(EventType.CHARGER_CONNECTED, payload)
                 }
 
                 "\$disconnect" -> {
                     val payload = """{"connectionId":"$connectionId"}"""
-                    publish("charger.disconnected", payload)
+                    publish(EventType.CHARGER_DISCONNECTED, payload)
                 }
 
                 else -> {
                     // e.g., telemetry or status update
                     val body = event.body ?: return APIGatewayResponse.error("Missing body")
-                    publish("charger.telemetry", body)
+                    publish(EventType.CHARGER_TELEMETRY, body)
                 }
             }
 

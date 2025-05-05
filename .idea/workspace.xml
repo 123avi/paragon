@@ -4,20 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dab0ba2e-2e59-4058-ae68-31360874c326" name="Changes" comment="add tests to SqsCommandQueueManagerTest, remove chargerID from SqsCommandQueueManager.kt all tests pass">
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/LambdaBootstrap.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/WebSocketRouterHandler.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/lambda/LambdaBootstrapTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/Environment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-util/src/main/kotlin/TestEnvironment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="dab0ba2e-2e59-4058-ae68-31360874c326" name="Changes" comment="add tests to SqsCommandQueueManagerTest, remove chargerID from SqsCommandQueueManager.kt all tests pass. set test-util for mocking environment, move Environment.kt to common">
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/EventType.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test-util/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transaction-manager/src/main/kotlin/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charger-service/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/LambdaBootstrap.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/LambdaBootstrap.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/WebSocketIngressHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/WebSocketIngressHandler.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charger-service/src/test/kotlin/charger/SqsCommandQueueManagerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/charger/SqsCommandQueueManagerTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/charger-service/src/test/kotlin/gw/WebSocketIngressHandlerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/gw/WebSocketIngressHandlerTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/test/kotlin/lambda/LambdaBootstrapTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/lambda/LambdaBootstrapTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/charger-service/src/test/kotlin/lambda/WebSocketIngressHandlerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/lambda/WebSocketIngressHandlerTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/Environment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/Environment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-util/src/main/kotlin/TestEnvironment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/test-util/src/main/kotlin/TestEnvironment.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,10 +52,10 @@
       <list>
         <option value="Kotlin Interface" />
         <option value="Class" />
-        <option value="Kotlin Enum" />
         <option value="Kotlin Class" />
         <option value="Kotlin Data Class" />
         <option value="Kotlin Object" />
+        <option value="Kotlin Enum" />
       </list>
     </option>
   </component>
@@ -87,40 +85,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Build paragon.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.CommandQueueManagerTest.dequeue should return the first command in the queue.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.CommandQueueManagerTest.enqueue should add multiple commands to the same queue.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.CommandQueueManagerTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.LambdaBootstrapTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.PersistentFpQueueTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SqsCommandQueueManagerTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SqsCommandQueueManagerTest.nextCommand should return null when no messages are available.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SqsCommandQueueManagerTest.queueSize should return the approximate number of messages.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SqsCommandQueueManagerTest.retryCommand should re-enqueue the command with decremented retries.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SqsCommandQueueManagerTest.retryCommand should remove the command if no retries are left.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.WebSocketIngressHandlerTest (1).executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.WebSocketIngressHandlerTest (2).executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.WebSocketIngressHandlerTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.WebSocketIngressHandlerTest.should publish to charger_connected on connect.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.WebSocketIngressHandlerTest.should publish to charger_disconnected on disconnect.executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.WebSocketIngressHandlerTest.should publish to charger_telemetry on default route.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.WebSocketIngressHandlerTest.should register charger on CONNECT.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/USER/Documents/projects&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/USER/Documents/projects/paragon/test-util/src/main/kotlin/Main.kt&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build paragon.executor": "Run",
+    "Gradle.CommandQueueManagerTest.dequeue should return the first command in the queue.executor": "Run",
+    "Gradle.CommandQueueManagerTest.enqueue should add multiple commands to the same queue.executor": "Run",
+    "Gradle.CommandQueueManagerTest.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.LambdaBootstrapTest.executor": "Run",
+    "Gradle.PersistentFpQueueTest.executor": "Run",
+    "Gradle.SqsCommandQueueManagerTest.executor": "Run",
+    "Gradle.SqsCommandQueueManagerTest.nextCommand should return null when no messages are available.executor": "Run",
+    "Gradle.SqsCommandQueueManagerTest.queueSize should return the approximate number of messages.executor": "Run",
+    "Gradle.SqsCommandQueueManagerTest.retryCommand should re-enqueue the command with decremented retries.executor": "Run",
+    "Gradle.SqsCommandQueueManagerTest.retryCommand should remove the command if no retries are left.executor": "Run",
+    "Gradle.WebSocketIngressHandlerTest (1).executor": "Run",
+    "Gradle.WebSocketIngressHandlerTest (2).executor": "Run",
+    "Gradle.WebSocketIngressHandlerTest.executor": "Run",
+    "Gradle.WebSocketIngressHandlerTest.should publish to charger_connected on connect (1).executor": "Run",
+    "Gradle.WebSocketIngressHandlerTest.should publish to charger_connected on connect.executor": "Run",
+    "Gradle.WebSocketIngressHandlerTest.should publish to charger_disconnected on disconnect.executor": "Debug",
+    "Gradle.WebSocketIngressHandlerTest.should publish to charger_telemetry on default route.executor": "Run",
+    "Gradle.WebSocketIngressHandlerTest.should register charger on CONNECT.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/USER/Documents/projects",
+    "onboarding.tips.debug.path": "C:/Users/USER/Documents/projects/paragon/test-util/src/main/kotlin/Main.kt",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\USER\Documents\projects\paragon\charger-service\src\main\kotlin\charger" />
@@ -138,7 +137,7 @@
       <recent name="org.paragontech.common" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.WebSocketIngressHandlerTest.should publish to charger_telemetry on default route">
+  <component name="RunManager" selected="Gradle.WebSocketIngressHandlerTest (1)">
     <configuration name="LambdaBootstrapTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -211,6 +210,30 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="WebSocketIngressHandlerTest.should publish to charger_connected on connect (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":charger-service:test" />
+            <option value="--tests" />
+            <option value="&quot;lambda.WebSocketIngressHandlerTest.should publish to charger_connected on connect&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="WebSocketIngressHandlerTest.should publish to charger_connected on connect" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -235,37 +258,13 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="WebSocketIngressHandlerTest.should publish to charger_telemetry on default route" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":charger-service:test" />
-            <option value="--tests" />
-            <option value="&quot;lambda.WebSocketIngressHandlerTest.should publish to charger_telemetry on default route&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.WebSocketIngressHandlerTest.should publish to charger_telemetry on default route" />
         <item itemvalue="Gradle.WebSocketIngressHandlerTest (1)" />
-        <item itemvalue="Gradle.WebSocketIngressHandlerTest" />
-        <item itemvalue="Gradle.WebSocketIngressHandlerTest.should publish to charger_connected on connect" />
+        <item itemvalue="Gradle.WebSocketIngressHandlerTest.should publish to charger_connected on connect (1)" />
         <item itemvalue="Gradle.LambdaBootstrapTest" />
+        <item itemvalue="Gradle.WebSocketIngressHandlerTest.should publish to charger_connected on connect" />
+        <item itemvalue="Gradle.WebSocketIngressHandlerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -326,7 +325,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745921060043</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="add tests to SqsCommandQueueManagerTest, remove chargerID from SqsCommandQueueManager.kt all tests pass. set test-util for mocking environment, move Environment.kt to common">
+      <option name="closed" value="true" />
+      <created>1746447411593</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1746447411593</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -348,7 +355,8 @@
     <MESSAGE value="adding command type and DistributedCommandQueue all tests pass" />
     <MESSAGE value="add SqsCommandQueueManagerTest pass" />
     <MESSAGE value="add tests to SqsCommandQueueManagerTest, remove chargerID from SqsCommandQueueManager.kt all tests pass" />
-    <option name="LAST_COMMIT_MESSAGE" value="add tests to SqsCommandQueueManagerTest, remove chargerID from SqsCommandQueueManager.kt all tests pass" />
+    <MESSAGE value="add tests to SqsCommandQueueManagerTest, remove chargerID from SqsCommandQueueManager.kt all tests pass. set test-util for mocking environment, move Environment.kt to common" />
+    <option name="LAST_COMMIT_MESSAGE" value="add tests to SqsCommandQueueManagerTest, remove chargerID from SqsCommandQueueManager.kt all tests pass. set test-util for mocking environment, move Environment.kt to common" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

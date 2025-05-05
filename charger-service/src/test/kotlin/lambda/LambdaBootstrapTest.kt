@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.paragontech.Environment
+import org.paragontech.EventType
 import org.paragontech.lambda.WebSocketIngressHandler
 import java.util.concurrent.atomic.AtomicReference
 
@@ -27,7 +28,7 @@ class LambdaBootstrapTest {
     @Test
     fun `should publish to correct topic using injected environment`() {
         // Arrange: capture topic and message
-        val captured = AtomicReference<Pair<String, String>?>(null)
+        val captured = AtomicReference<Pair<EventType, String>?>(null)
         val env = Environment { topic, message ->
             captured.set(topic to message)
         }
@@ -46,7 +47,7 @@ class LambdaBootstrapTest {
         // Assert
         val (topic, message) = captured.get()!!
         assert(response.statusCode == 200)
-        assert(topic == "charger.disconnected")
+        assert(topic == EventType.CHARGER_DISCONNECTED)
         assert(message.contains("abc123"))
     }
 }
