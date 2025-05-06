@@ -1,4 +1,4 @@
-package lambda
+package websocket
 
 import com.amazonaws.services.lambda.runtime.events.APIGatewayV2WebSocketEvent
 import com.paragontech.TestEnvironment

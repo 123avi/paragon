@@ -4,10 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dab0ba2e-2e59-4058-ae68-31360874c326" name="Changes" comment="idiomatic response handling using HttpStatus">
-      <change afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/lambda/WebSocketRouterHandlerTest.kt" afterDir="false" />
+    <list default="true" id="dab0ba2e-2e59-4058-ae68-31360874c326" name="Changes" comment="add WebSocketRouterHandlerTest.kt">
+      <change afterPath="$PROJECT_DIR$/billing-service/src/main/kotlin/Main.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/ChargerMetadata.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/ChargerService.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/handlers/BootNotificationHandler.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/handlers/OcppMessageHandler.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/AuthorizeConf.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/AuthorizeReq.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/BootNotificationConf.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/BootNotificationReq.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/IdTagInfo.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/MessageType.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/MeterValue.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/MeterValuesReq.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/OcppAction.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/SampledValue.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/StartTransactionConf.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/StartTransactionReq.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/StatusNotificationReq.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/StopTransactionConf.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/StopTransactionReq.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/publishers/EventPublisher.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/publishers/SqsEventPublisher.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/routing/OcppDispatcher.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/store/ConnectionStore.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/websocket/WebSocketIngressHandler.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/WebSocketRouterHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/WebSocketRouterHandler.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/LambdaBootstrap.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/websocket/LambdaBootstrap.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/WebSocketIngressHandler.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/WebSocketRouterHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/websocket/WebSocketRouterHandler.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/test/kotlin/lambda/LambdaBootstrapTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/websocket/LambdaBootstrapTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/test/kotlin/lambda/WebSocketIngressHandlerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/websocket/WebSocketIngressHandlerTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/test/kotlin/lambda/WebSocketRouterHandlerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/websocket/WebSocketRouterHandlerTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,11 +71,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin Interface" />
         <option value="Class" />
-        <option value="Kotlin Data Class" />
         <option value="Kotlin Object" />
+        <option value="Kotlin Data Class" />
         <option value="Kotlin Enum" />
+        <option value="Kotlin Interface" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -92,6 +121,7 @@
     "Gradle.SqsCommandQueueManagerTest.queueSize should return the approximate number of messages.executor": "Run",
     "Gradle.SqsCommandQueueManagerTest.retryCommand should re-enqueue the command with decremented retries.executor": "Run",
     "Gradle.SqsCommandQueueManagerTest.retryCommand should remove the command if no retries are left.executor": "Run",
+    "Gradle.Tests in 'paragon.charger-service.test'.executor": "Coverage",
     "Gradle.WebSocketIngressHandlerTest (1).executor": "Run",
     "Gradle.WebSocketIngressHandlerTest (2).executor": "Run",
     "Gradle.WebSocketIngressHandlerTest.executor": "Run",
@@ -123,6 +153,9 @@
       <recent name="C:\Users\USER\Documents\projects\paragon\common\src\main\kotlin\fp" />
       <recent name="C:\Users\USER\Documents\projects\paragon\charger-service\src\main\kotlin" />
     </key>
+    <key name="CreateKotlinClassDialog.RecentsKey">
+      <recent name="org.paragontech.messages.handlers" />
+    </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="lambda" />
       <recent name="event.handler" />
@@ -130,11 +163,36 @@
       <recent name="fp" />
     </key>
     <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
-      <recent name="org.paragontech" />
-      <recent name="org.paragontech.common" />
+      <recent name="org.paragontech.publishers" />
+      <recent name="org.paragontech.ocpp.massages" />
+      <recent name="org.paragontech.ocpp.ocppMessages" />
+      <recent name="org.paragontech.ocpp.messages" />
+      <recent name="org.paragontech.notifications" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.WebSocketRouterHandlerTest.should return 500 when handler throws">
+  <component name="RunManager" selected="Gradle.Tests in 'paragon.charger-service.test'">
+    <configuration name="Tests in 'paragon.charger-service.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":charger-service:test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="WebSocketIngressHandlerTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -149,30 +207,6 @@
             <option value=":charger-service:test" />
             <option value="--tests" />
             <option value="&quot;lambda.WebSocketIngressHandlerTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="WebSocketIngressHandlerTest.should return 400 if chargerId is missing" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":charger-service:test" />
-            <option value="--tests" />
-            <option value="&quot;lambda.WebSocketIngressHandlerTest.should return 400 if chargerId is missing&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -257,11 +291,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.Tests in 'paragon.charger-service.test'" />
         <item itemvalue="Gradle.WebSocketRouterHandlerTest.should return 500 when handler throws" />
         <item itemvalue="Gradle.WebSocketRouterHandlerTest.should return 200 when handler returns success" />
         <item itemvalue="Gradle.WebSocketRouterHandlerTest.should map handler response to API GW format" />
         <item itemvalue="Gradle.WebSocketIngressHandlerTest (1)" />
-        <item itemvalue="Gradle.WebSocketIngressHandlerTest.should return 400 if chargerId is missing" />
       </list>
     </recent_temporary>
   </component>
@@ -346,7 +380,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746455898230</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="add WebSocketRouterHandlerTest.kt">
+      <option name="closed" value="true" />
+      <created>1746462216276</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1746462216276</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -372,7 +414,8 @@
     <MESSAGE value="change event type to emum EventType.kt for safety and readability. fix tests accordingly all pass" />
     <MESSAGE value="change event type to emum EventType.kt for safety and readability. fix tests accordingly all pass, remove duplicate class" />
     <MESSAGE value="idiomatic response handling using HttpStatus" />
-    <option name="LAST_COMMIT_MESSAGE" value="idiomatic response handling using HttpStatus" />
+    <MESSAGE value="add WebSocketRouterHandlerTest.kt" />
+    <option name="LAST_COMMIT_MESSAGE" value="add WebSocketRouterHandlerTest.kt" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -384,5 +427,8 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/paragon$Tests_in__paragon_charger_service_test_.ic" NAME="Tests in 'paragon.charger-service.test' Coverage Results" MODIFIED="1746463854415" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>
