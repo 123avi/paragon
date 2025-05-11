@@ -1,16 +1,17 @@
 package org.paragontech.charger
 
-import kotlinx.serialization.Serializable
+import com.fasterxml.jackson.annotation.JsonProperty
+import org.paragontech.typesaliases.ChargerId
+import org.paragontech.typesaliases.CommandId
 import java.util.*
 
-typealias ChargerId = String
 
-@Serializable
 data class CommandEnvelope(
-    val commandId: String = UUID.randomUUID().toString(), // Required for dedup + tracking
-    val chargerId: String,
-    val commandType: CommandType,
-    val payload: String,
+    @JsonProperty("commandId") val commandId: CommandId = UUID.randomUUID().toString(), // Required for dedup + tracking
+    @JsonProperty("chargerId") val chargerId: ChargerId,
+    @JsonProperty("commandType") val commandType: CommandType,
+    @JsonProperty("payload") val payload:  Map<String, Any>,
     val retriesLeft: Int = 3,
     val timeoutMillis: Long = 10_000L
 )
+

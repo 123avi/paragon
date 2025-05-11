@@ -4,39 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dab0ba2e-2e59-4058-ae68-31360874c326" name="Changes" comment="add WebSocketRouterHandlerTest.kt">
-      <change afterPath="$PROJECT_DIR$/billing-service/src/main/kotlin/Main.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/ChargerMetadata.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/ChargerService.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/handlers/BootNotificationHandler.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/handlers/OcppMessageHandler.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/AuthorizeConf.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/AuthorizeReq.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/BootNotificationConf.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/BootNotificationReq.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/IdTagInfo.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/MessageType.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/MeterValue.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/MeterValuesReq.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/OcppAction.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/SampledValue.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/StartTransactionConf.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/StartTransactionReq.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/StatusNotificationReq.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/StopTransactionConf.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/ocpp/massages/StopTransactionReq.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/publishers/EventPublisher.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/publishers/SqsEventPublisher.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/routing/OcppDispatcher.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/store/ConnectionStore.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/websocket/WebSocketIngressHandler.kt" afterDir="false" />
+    <list default="true" id="dab0ba2e-2e59-4058-ae68-31360874c326" name="Changes" comment="WIP done some cleaning, add notification class and seperate logic. NOT tested yet">
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/ChargerServiceImp.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/InMemoryCommandQueueManager.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/SqsCommandQueueService.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/model/Charger.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/repository/ChargerDao.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/repository/ChargerRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/repository/ChargerRepositoryImp.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/controllers/CommandController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/websocket/LambdaRuntimeEnv.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/websocket/OcppHandlerConfig.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charger-service/src/main/resources/db/migration/V1__create_customers.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/typesaliases/TypeAliases.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/LambdaBootstrap.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/websocket/LambdaBootstrap.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/WebSocketIngressHandler.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/lambda/WebSocketRouterHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/websocket/WebSocketRouterHandler.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charger-service/src/test/kotlin/lambda/LambdaBootstrapTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/websocket/LambdaBootstrapTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charger-service/src/test/kotlin/lambda/WebSocketIngressHandlerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/websocket/WebSocketIngressHandlerTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charger-service/src/test/kotlin/lambda/WebSocketRouterHandlerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/websocket/WebSocketRouterHandlerTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/ChargerService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/ChargerService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/CommandEnvelope.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/CommandEnvelope.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/CommandQueueManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/charger/CommandQueueManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/routing/OcppDispatcher.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/websocket/routing/OcppDispatcher.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/websocket/LambdaBootstrap.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/websocket/LambdaBootstrap.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/main/kotlin/websocket/WebSocketIngressHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/main/kotlin/websocket/WebSocketIngressHandler.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charger-service/src/test/kotlin/charger/CommandQueueManagerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/charger-service/src/test/kotlin/charger/CommandQueueManagerTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/common/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/route/HandlerResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/route/HandlerResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,10 +71,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
-        <option value="Kotlin Object" />
         <option value="Kotlin Data Class" />
         <option value="Kotlin Enum" />
         <option value="Kotlin Interface" />
+        <option value="Kotlin Object" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -141,19 +140,23 @@
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/USER/Documents/projects",
-    "onboarding.tips.debug.path": "C:/Users/USER/Documents/projects/paragon/test-util/src/main/kotlin/Main.kt",
-    "project.structure.last.edited": "Problems",
+    "onboarding.tips.debug.path": "C:/Users/USER/Documents/projects/paragon/db-charger/src/main/kotlin/Main.kt",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\USER\Documents\projects\paragon" />
+      <recent name="C:\Users\USER\Documents\projects\paragon\db-charger\src\main\resources\db" />
+      <recent name="C:\Users\USER\Documents\projects\paragon\db-charger\src\main\resources" />
       <recent name="C:\Users\USER\Documents\projects\paragon\charger-service\src\main\kotlin\charger" />
       <recent name="C:\Users\USER\Documents\projects\paragon\common\src\main\kotlin\fp" />
-      <recent name="C:\Users\USER\Documents\projects\paragon\charger-service\src\main\kotlin" />
     </key>
     <key name="CreateKotlinClassDialog.RecentsKey">
+      <recent name="org.paragontech.charger" />
+      <recent name="org.paragontech.websocket" />
       <recent name="org.paragontech.messages.handlers" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
@@ -163,11 +166,11 @@
       <recent name="fp" />
     </key>
     <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
+      <recent name="org.paragontech.websocket" />
       <recent name="org.paragontech.publishers" />
       <recent name="org.paragontech.ocpp.massages" />
       <recent name="org.paragontech.ocpp.ocppMessages" />
       <recent name="org.paragontech.ocpp.messages" />
-      <recent name="org.paragontech.notifications" />
     </key>
   </component>
   <component name="RunManager" selected="Gradle.Tests in 'paragon.charger-service.test'">
@@ -388,7 +391,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746462216276</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="WIP done some cleaning, add notification class and seperate logic. NOT tested yet">
+      <option name="closed" value="true" />
+      <created>1746528090276</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1746528090276</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -415,7 +426,8 @@
     <MESSAGE value="change event type to emum EventType.kt for safety and readability. fix tests accordingly all pass, remove duplicate class" />
     <MESSAGE value="idiomatic response handling using HttpStatus" />
     <MESSAGE value="add WebSocketRouterHandlerTest.kt" />
-    <option name="LAST_COMMIT_MESSAGE" value="add WebSocketRouterHandlerTest.kt" />
+    <MESSAGE value="WIP done some cleaning, add notification class and seperate logic. NOT tested yet" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP done some cleaning, add notification class and seperate logic. NOT tested yet" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -424,6 +436,11 @@
           <url>file://$PROJECT_DIR$/test-util/src/main/kotlin/Main.kt</url>
           <line>13</line>
           <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/db-charger/src/main/kotlin/Main.kt</url>
+          <line>13</line>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

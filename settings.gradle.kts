@@ -31,3 +31,5 @@ include(
     ":billing-service"
 )
 include("infra")
+
+include("db-charger")

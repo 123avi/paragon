@@ -1,11 +1,15 @@
+val springBootVersion: String by project
+val springDependencyManagementVersion: String by project
 plugins {
-//    kotlin("jvm") version "2.1.20" apply false
     kotlin("jvm")
     id("org.springframework.boot") version "3.2.5" apply false
     id("io.spring.dependency-management") version "1.1.4" apply false
+
+    id("org.flywaydb.flyway") version "9.22.0"
+    id("nu.studer.jooq") version "8.2"
 }
 
-allprojects{
+allprojects {
     group = "com.paragontech"
     version = "0.0.1-SNAPSHOT"
 
@@ -13,11 +17,19 @@ allprojects{
         mavenCentral()
     }
 
-
     tasks.withType<Test> {
         useJUnitPlatform()
     }
 }
+//dependencies {
+//    implementation("org.jooq:jooq")
+////    implementation("org.springframework.boot:spring-boot-starter-jooq")
+////    implementation("org.flywaydb:flyway-core")
+////    implementation("org.postgresql:postgresql")
+//
+//    // This is the fix — make the driver available for code generation
+//    jooqGenerator("org.postgresql:postgresql:42.7.2")
+//}
 
 subprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
@@ -38,7 +50,9 @@ subprojects {
 
         // Optional: JSON assertions / parsing
         testImplementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.0")
+
     }
+
 
     kotlin {
         jvmToolchain(22)
@@ -47,4 +61,8 @@ subprojects {
     tasks.withType<Test> {
         useJUnitPlatform()
     }
+
+
+
 }
+

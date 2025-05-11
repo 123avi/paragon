@@ -1,5 +1,6 @@
 package org.paragontech.route
 import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 
 sealed class HandlerResponse {
     abstract val statusCode: Int
@@ -10,6 +11,11 @@ sealed class HandlerResponse {
         "statusCode" to statusCode,
         "body" to body,
         "headers" to headers)
+
+    fun toResponseEntity(): ResponseEntity<Any> = when (this) {
+        is Success -> ResponseEntity.ok(mapOf("message" to body))
+        is Error -> ResponseEntity.status(statusCode).body(mapOf("error" to body))
+    }
 
     data class Success(
         override val statusCode: Int = HttpStatus.OK.value(),
@@ -40,6 +46,4 @@ sealed class HandlerResponse {
         fun internalServerError(message: String = "Internal server error"): HandlerResponse =
             Error(HttpStatus.INTERNAL_SERVER_ERROR, message)
     }
-
-
 }

@@ -4,4 +4,7 @@ domain service responsible for handling business logic related to chargers — e
  */
 interface ChargerService {
     fun registerCharger(metadata: ChargerMetadata)
+    fun sendCommand(command: CommandEnvelope)
+//    fun updateConnectionState(chargerId: String, state: ConnectionState)
+//    fun getChargerStatus(chargerId: String): ChargerStatus
 }

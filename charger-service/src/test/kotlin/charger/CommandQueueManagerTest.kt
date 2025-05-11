@@ -2,7 +2,7 @@ package charger
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.paragontech.charger.CommandEnvelope
-import org.paragontech.charger.CommandQueueManager
+import org.paragontech.charger.InMemoryCommandQueueManager
 import org.paragontech.charger.CommandType
 
 
@@ -13,7 +13,7 @@ class CommandQueueManagerTest {
 
     @Test
     fun `enqueue should add a command to the correct charger queue`() {
-        val manager = CommandQueueManager()
+        val manager = InMemoryCommandQueueManager()
         val cmd = createCommand("charger-1")
 
         val updated = manager.enqueue(cmd)
@@ -26,7 +26,7 @@ class CommandQueueManagerTest {
     fun `enqueue should add multiple commands to the same queue`() {
         val cmd1 = createCommand("charger-1", CommandType.StartTransaction)
         val cmd2 = createCommand("charger-1", CommandType.StopTransaction)
-        val manager = CommandQueueManager().enqueue(cmd1).enqueue(cmd2)
+        val manager = InMemoryCommandQueueManager().enqueue(cmd1).enqueue(cmd2)
 
         val queue = manager.getQueue("charger-1").toList()
         assertEquals(2, queue.size)
@@ -38,7 +38,7 @@ class CommandQueueManagerTest {
     fun `enqueue should not affect other charger queues`() {
         val cmd1 = createCommand("charger-1")
         val cmd2 = createCommand("charger-2")
-        val manager = CommandQueueManager().enqueue(cmd1).enqueue(cmd2)
+        val manager = InMemoryCommandQueueManager().enqueue(cmd1).enqueue(cmd2)
 
         val queue1 = manager.getQueue("charger-1").toList()
         val queue2 = manager.getQueue("charger-2").toList()
@@ -53,7 +53,7 @@ class CommandQueueManagerTest {
     fun `dequeue should return the first command in the queue`() {
         val cmd1 = createCommand("charger-1", CommandType.StartTransaction)
         val cmd2 = createCommand("charger-1", CommandType.StopTransaction)
-        val manager = CommandQueueManager().enqueue(cmd1).enqueue(cmd2)
+        val manager = InMemoryCommandQueueManager().enqueue(cmd1).enqueue(cmd2)
 
         val updated = manager.dequeue("charger-1")
         val head = updated.getQueue("charger-1").peek()
@@ -66,7 +66,7 @@ class CommandQueueManagerTest {
 
     @Test
     fun `dequeue should return null for an empty queue`() {
-        val manager = CommandQueueManager().enqueue(createCommand("charger-1"))
+        val manager = InMemoryCommandQueueManager().enqueue(createCommand("charger-1"))
         val updated = manager.dequeue("charger-1").dequeue("charger-1")
 
         val dequeued = updated.getQueue("charger-1").peek()
@@ -77,7 +77,7 @@ class CommandQueueManagerTest {
     fun `dequeue should not affect other charger queues`() {
         val cmd1 = createCommand("charger-1", CommandType.StartTransaction)
         val cmd2 = createCommand("charger-2", CommandType.StopTransaction)
-        val manager = CommandQueueManager().enqueue(cmd1).enqueue(cmd2)
+        val manager = InMemoryCommandQueueManager().enqueue(cmd1).enqueue(cmd2)
 
         val updated = manager.dequeue("charger-1")
         val queue1 = updated.getQueue("charger-1").toList()
@@ -91,7 +91,7 @@ class CommandQueueManagerTest {
     @Test
     fun `dequeue should return an empty queue for unknown charger`() {
         val cmd = createCommand("charger-1")
-        val manager = CommandQueueManager().enqueue(cmd)
+        val manager = InMemoryCommandQueueManager().enqueue(cmd)
 
         val updated = manager.dequeue("charger-2")
         val queue = updated.getQueue("charger-1").toList()
@@ -103,7 +103,7 @@ class CommandQueueManagerTest {
     fun `dequeue should remove the first command from the queue`() {
         val cmd1 = createCommand("charger-1", CommandType.StartTransaction)
         val cmd2 = createCommand("charger-1", CommandType.StopTransaction)
-        val manager = CommandQueueManager().enqueue(cmd1).enqueue(cmd2)
+        val manager = InMemoryCommandQueueManager().enqueue(cmd1).enqueue(cmd2)
 
         val updated = manager.dequeue("charger-1")
         val queue = updated.getQueue("charger-1").toList()
@@ -115,7 +115,7 @@ class CommandQueueManagerTest {
     @Test
     fun `retry should re-enqueue the command with decremented retries`() {
         val cmd = createCommand("charger-1", retries = 2)
-        val manager = CommandQueueManager().enqueue(cmd)
+        val manager = InMemoryCommandQueueManager().enqueue(cmd)
 
         val retried = manager.retry("charger-1")
         val retriedCommand = retried.getQueue("charger-1").peek()
@@ -127,7 +127,7 @@ class CommandQueueManagerTest {
     @Test
     fun `retry should remove the command if retries are exhausted`() {
         val cmd = createCommand("charger-1", retries = 0)
-        val manager = CommandQueueManager().enqueue(cmd)
+        val manager = InMemoryCommandQueueManager().enqueue(cmd)
 
         val retried = manager.retry("charger-1")
         assertTrue(retried.isEmpty("charger-1"))
@@ -135,7 +135,7 @@ class CommandQueueManagerTest {
 
     @Test
     fun `getQueue should return an empty queue for unknown charger`() {
-        val manager = CommandQueueManager()
+        val manager = InMemoryCommandQueueManager()
         val queue = manager.getQueue("nonexistent").toList()
 
         assertTrue(queue.isEmpty())
@@ -143,14 +143,14 @@ class CommandQueueManagerTest {
 
     @Test
     fun `isEmpty should return true for an empty or unknown charger queue`() {
-        val manager = CommandQueueManager()
+        val manager = InMemoryCommandQueueManager()
         assertTrue(manager.isEmpty("charger-1"))
     }
 
     @Test
     fun `isEmpty should return false when queue has elements`() {
         val cmd = createCommand("charger-1")
-        val manager = CommandQueueManager().enqueue(cmd)
+        val manager = InMemoryCommandQueueManager().enqueue(cmd)
 
         assertFalse(manager.isEmpty("charger-1"))
     }

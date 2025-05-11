@@ -19,3 +19,18 @@
 -   Allows real-time telemetry tracking (fully persisted with TTL for audit)
 
 -   Processes incoming WebSocket events through AWS API Gateway + Lambda + Kafka
+
+#### DB
+-   RDS (PostgreSQL) for relational data
+- Apply the migrations:
+```
+./gradlew flywayMigrate
+```
+- Generate jOOQ code
+```
+./gradlew generateJooq
+```
+#### steps 
+- Run ```docker-compose up -d``` to launch PostgreSQL
+- Run ```./gradlew :db-charger:flywayMigrate :db-charger:generateJooq```
+- Use generated types from com.paragon.generated.jooq in your project

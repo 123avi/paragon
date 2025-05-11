@@ -1,4 +1,4 @@
-package org.paragontech.routing
+package org.paragontech.websocket.routing
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.paragontech.notifications.AuthorizeReq

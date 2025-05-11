@@ -4,13 +4,10 @@ import com.amazonaws.services.lambda.runtime.events.APIGatewayV2WebSocketEvent
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.core.type.TypeReference
-import org.paragontech.Environment
-import org.paragontech.notifications.AuthorizeReq
-import org.paragontech.notifications.BootNotificationReq
 import org.paragontech.ocpp.massages.MessageType.CALL
 import org.paragontech.route.HandlerResponse
 import org.paragontech.ocpp.massages.OcppAction
-import org.paragontech.routing.OcppDispatcher
+import org.paragontech.websocket.routing.OcppDispatcher
 import org.paragontech.store.ConnectionStore
 
 //@Component

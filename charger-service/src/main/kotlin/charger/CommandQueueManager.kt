@@ -1,40 +1,42 @@
 package org.paragontech.charger
 
-import org.paragontech.common.fp.FpQueue
-import org.paragontech.common.fp.fpQueueOf
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.springframework.stereotype.Service
+import java.time.Instant
+import mu.KotlinLogging
 
-class CommandQueueManager(
-    private val state: Map<ChargerId, FpQueue<CommandEnvelope>> = emptyMap()
-) {
-    fun enqueue(command: CommandEnvelope): CommandQueueManager {
-        val currentQueue = state[command.chargerId] ?: fpQueueOf()
-        val updatedQueue = currentQueue.enqueue(command)
-        return CommandQueueManager(state + (command.chargerId to updatedQueue))
+
+@Service
+class CommandQueueManager (
+
+    private val commandQueueService: DistributedCommandQueue,
+    private val objectMapper: ObjectMapper
+){
+    private val logger = KotlinLogging.logger {}
+
+    suspend fun queueRemoteStartTransaction(
+        chargerId: String,
+        idTag: String
+    ) {
+        val payload = buildStartTransactionPayload(idTag)
+        val cmd = CommandEnvelope(chargerId = chargerId, commandType = CommandType.StartTransaction, payload = payload)
+
+        logger.info { "Enqueuing command: $cmd" }
+
+        commandQueueService.enqueueCommand(cmd)
     }
 
-    fun dequeue(chargerId: ChargerId): CommandQueueManager {
-        val currentQueue = state[chargerId] ?: fpQueueOf()
-        val updatedQueue = currentQueue.dequeue()
-        return CommandQueueManager(state + (chargerId to updatedQueue))
+    fun buildStartTransactionPayload(
+        idTag: String,
+        connectorId: Int = 1,
+        timestamp: String = Instant.now().toString()
+    ): Map<String, Any> {
+        val payload = mapOf(
+            "connectorId" to connectorId,
+            "idTag" to idTag,
+            "timestamp" to timestamp
+        )
+        return payload
     }
-
-    fun retry(chargerId: ChargerId): CommandQueueManager {
-        val queue = state[chargerId] ?: fpQueueOf()
-        val command = queue.peek() ?: return this
-
-        return if (command.retriesLeft > 0) {
-            val retriedCommand = command.copy(retriesLeft = command.retriesLeft - 1)
-            val updatedQueue = queue.dequeue().enqueue(retriedCommand)
-            CommandQueueManager(state + (chargerId to updatedQueue))
-        } else {
-            dequeue(chargerId)
-        }
-    }
-
-        fun getQueue(chargerId: ChargerId): FpQueue<CommandEnvelope> = state[chargerId] ?: fpQueueOf()
-
-        fun isEmpty(chargerId: ChargerId): Boolean = state[chargerId]?.isEmpty() ?: true
-
-
 
 }

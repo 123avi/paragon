@@ -1,0 +1,13 @@
+  services:
+    postgres-charger:
+      image: postgres:17
+      container_name: db_charger
+      ports:
+        - "5433:5432"
+      environment:
+        POSTGRES_DB: chargers
+        POSTGRES_USER: dev
+        POSTGRES_PASSWORD: devpass
+
+  volumes:
+    pgdata:
